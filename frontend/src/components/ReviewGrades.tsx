@@ -4,7 +4,6 @@ import type { GradingResult, EditedGrades } from '../App';
 interface ReviewGradesProps {
   gradingResult: GradingResult;
   editedGrades: EditedGrades | null;
-  onGradesUpdated: (grades: EditedGrades) => void;
   onReviewComplete: (finalGrades: EditedGrades) => void;
   onBack: () => void;
   onGradesSaved?: (submissionId: string, grades: EditedGrades) => void;
@@ -13,7 +12,6 @@ interface ReviewGradesProps {
 const ReviewGrades: React.FC<ReviewGradesProps> = ({ 
   gradingResult, 
   editedGrades, 
-  onGradesUpdated, 
   onReviewComplete, 
   onBack,
   onGradesSaved
@@ -48,7 +46,7 @@ const ReviewGrades: React.FC<ReviewGradesProps> = ({
     updatedGrades.percentage = Math.round((updatedGrades.total_score / updatedGrades.max_total) * 100 * 10) / 10;
     
     setCurrentGrades(updatedGrades);
-    onGradesUpdated(updatedGrades);
+    // Grade updated locally
   };
 
   const handleFeedbackChange = (questionId: string, newFeedback: string) => {
@@ -62,7 +60,7 @@ const ReviewGrades: React.FC<ReviewGradesProps> = ({
     };
     
     setCurrentGrades(updatedGrades);
-    onGradesUpdated(updatedGrades);
+    // Grade updated locally
   };
 
   const handleSubmit = () => {
