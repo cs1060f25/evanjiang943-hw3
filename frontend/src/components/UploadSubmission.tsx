@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GradingResult } from '../App';
+import type { GradingResult } from '../App';
 
 interface UploadSubmissionProps {
   onGradingComplete: (result: GradingResult) => void;
@@ -48,7 +48,7 @@ const UploadSubmission: React.FC<UploadSubmissionProps> = ({ onGradingComplete, 
     
     try {
       // Simulate API call to backend
-      const response = await fetch('http://localhost:5000/api/grade', {
+      const response = await fetch('http://localhost:5001/api/grade', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

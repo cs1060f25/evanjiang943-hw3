@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import LoginPage from './components/LoginPage';
 import TADashboard from './components/TADashboard';
@@ -7,6 +7,8 @@ import ReviewGrades from './components/ReviewGrades';
 import StudentView from './components/StudentView';
 
 export interface GradingResult {
+  submission_id?: string;
+  student_name?: string;
   filename: string;
   assignment_type: string;
   questions: Array<{
@@ -15,6 +17,7 @@ export interface GradingResult {
     score: number;
     max_points: number;
     feedback: string;
+    student_answer?: string;
   }>;
   total_score: number;
   max_total: number;
@@ -28,6 +31,7 @@ export interface EditedGrades extends GradingResult {
     score: number;
     max_points: number;
     feedback: string;
+    student_answer?: string;
     edited?: boolean;
   }>;
 }
@@ -45,6 +49,24 @@ function App() {
 
   const handleUpload = () => {
     setCurrentState('upload');
+  };
+
+  const handleGradeSubmission = (submission: any) => {
+    // Convert submission to grading result format
+    const gradingResult: GradingResult = {
+      submission_id: submission.submission_id || submission.id,
+      student_name: submission.student_name,
+      filename: submission.filename,
+      assignment_type: submission.assignment_type,
+      questions: submission.questions || [],
+      total_score: submission.total_score || 0,
+      max_total: submission.max_total || 0,
+      percentage: submission.percentage || 0
+    };
+    
+    setGradingResult(gradingResult);
+    setEditedGrades({ ...gradingResult, questions: gradingResult.questions.map(q => ({ ...q, edited: false })) });
+    setCurrentState('review');
   };
 
   const handleGradingComplete = (result: GradingResult) => {
@@ -73,7 +95,7 @@ function App() {
   return (
     <div className="App">
       {currentState === 'login' && <LoginPage onLogin={handleLogin} />}
-      {currentState === 'dashboard' && <TADashboard onUpload={handleUpload} />}
+      {currentState === 'dashboard' && <TADashboard onUpload={handleUpload} onGradeSubmission={handleGradeSubmission} />}
       {currentState === 'upload' && (
         <UploadSubmission 
           onGradingComplete={handleGradingComplete}

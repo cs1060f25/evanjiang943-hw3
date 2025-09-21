@@ -1,5 +1,5 @@
 import React from 'react';
-import { EditedGrades } from '../App';
+import type { EditedGrades } from '../App';
 
 interface StudentViewProps {
   finalGrades: EditedGrades;
@@ -63,7 +63,7 @@ const StudentView: React.FC<StudentViewProps> = ({ finalGrades, onNewSubmission,
           <div className="detailed-feedback">
             <h3>Detailed Feedback</h3>
             <div className="feedback-list">
-              {finalGrades.questions.map((question, index) => (
+              {finalGrades.questions.map((question) => (
                 <div key={question.question_id} className="feedback-item">
                   <div className="feedback-header">
                     <div className="question-info">

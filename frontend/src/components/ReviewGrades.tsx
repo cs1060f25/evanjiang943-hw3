@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GradingResult, EditedGrades } from '../App';
+import type { GradingResult, EditedGrades } from '../App';
 
 interface ReviewGradesProps {
   gradingResult: GradingResult;
@@ -69,12 +69,17 @@ const ReviewGrades: React.FC<ReviewGradesProps> = ({
         </div>
 
         <div className="review-content">
-          <div className="submission-info">
-            <h2>{gradingResult.filename}</h2>
-            <div className="assignment-type">
-              Assignment Type: <span className="type-badge">{gradingResult.assignment_type}</span>
+        <div className="submission-info">
+          <h2>{gradingResult.filename}</h2>
+          {gradingResult.student_name && (
+            <div className="student-info">
+              Student: <strong>{gradingResult.student_name}</strong>
             </div>
+          )}
+          <div className="assignment-type">
+            Assignment Type: <span className="type-badge">{gradingResult.assignment_type}</span>
           </div>
+        </div>
 
           <div className="grades-summary">
             <div className="summary-card">
@@ -108,16 +113,20 @@ const ReviewGrades: React.FC<ReviewGradesProps> = ({
                   <tr>
                     <th>Question</th>
                     <th>Description</th>
+                    <th>Student Answer</th>
                     <th>Score</th>
                     <th>Max Points</th>
                     <th>Feedback</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {currentGrades.questions.map((question, index) => (
+                  {currentGrades.questions.map((question) => (
                     <tr key={question.question_id} className={question.edited ? 'edited' : ''}>
                       <td className="question-id">{question.question_id.toUpperCase()}</td>
                       <td className="question-desc">{question.description}</td>
+                      <td className="student-answer">
+                        {question.student_answer || 'No answer provided'}
+                      </td>
                       <td className="score-cell">
                         <input
                           type="number"

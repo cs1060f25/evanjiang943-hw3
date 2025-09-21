@@ -542,6 +542,17 @@ tr.edited {
   color: #374151;
 }
 
+.student-answer {
+  color: #1e293b;
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  background-color: #f8fafc;
+  padding: 8px;
+  border-radius: 4px;
+  max-width: 200px;
+  word-wrap: break-word;
+}
+
 .score-cell {
   position: relative;
 }
@@ -916,6 +927,95 @@ tr.edited {
 .action-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+/* Submission Components */
+.submissions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.submission-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.submission-item:hover {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.submission-info {
+  flex: 1;
+}
+
+.student-name {
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.filename {
+  color: #64748b;
+  font-size: 0.875rem;
+  margin-bottom: 4px;
+}
+
+.submitted-at {
+  color: #94a3b8;
+  font-size: 0.75rem;
+}
+
+.score-info {
+  color: #1e293b;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.submission-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.action-btn.small {
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  min-width: auto;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-badge.released {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.no-submissions {
+  color: #64748b;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #64748b;
+  font-size: 1.125rem;
 }
 
 /* Responsive Design */
