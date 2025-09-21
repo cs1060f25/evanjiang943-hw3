@@ -29,7 +29,7 @@ const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission }) => {
 
   const fetchSubmissions = async () => {
     try {
-      const response = await fetch('/api/submissions');
+      const response = await fetch('http://localhost:5001/api/submissions');
       if (response.ok) {
         const data = await response.json();
         setSubmissions(data);
@@ -87,7 +87,7 @@ const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission }) => {
 
   const handleGradeSubmission = async (submission: Submission) => {
     try {
-      const response = await fetch(`/api/submissions/${submission.id}/grade`, {
+      const response = await fetch(`http://localhost:5001/api/submissions/${submission.id}/grade`, {
         method: 'POST'
       });
       
@@ -120,7 +120,7 @@ const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission }) => {
 
   const handleReleaseGrades = async (submission: Submission) => {
     try {
-      const response = await fetch(`/api/submissions/${submission.id}/release`, {
+      const response = await fetch(`http://localhost:5001/api/submissions/${submission.id}/release`, {
         method: 'POST'
       });
       

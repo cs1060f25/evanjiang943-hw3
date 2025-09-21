@@ -16,6 +16,9 @@ const ReviewGrades: React.FC<ReviewGradesProps> = ({
   onReviewComplete, 
   onBack 
 }) => {
+  console.log('ReviewGrades received gradingResult:', gradingResult);
+  console.log('ReviewGrades received editedGrades:', editedGrades);
+  
   const [currentGrades, setCurrentGrades] = useState<EditedGrades>(
     editedGrades || { ...gradingResult, questions: gradingResult.questions.map(q => ({ ...q, edited: false })) }
   );
@@ -56,6 +59,24 @@ const ReviewGrades: React.FC<ReviewGradesProps> = ({
   const handleSubmit = () => {
     onReviewComplete(currentGrades);
   };
+
+  console.log('ReviewGrades rendering with currentGrades:', currentGrades);
+  
+  if (!gradingResult || !gradingResult.questions) {
+    return (
+      <div className="review-page">
+        <div className="review-container">
+          <div className="review-header">
+            <button className="back-btn" onClick={onBack}>
+              ← Back to Dashboard
+            </button>
+            <h1>Review AI-Generated Grades</h1>
+            <p>Loading grading data...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="review-page">
