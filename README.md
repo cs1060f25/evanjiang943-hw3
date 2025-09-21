@@ -11,7 +11,7 @@ A rapid prototype of an AI-assisted grading platform designed to help instructor
 
 ## Overview
 
-This prototype demonstrates a simplified version of the Teaching Assistant (TA) user journey for an AI-assisted grading platform. The system simulates the process of uploading student submissions, AI-powered grading with rubric-based scoring, TA review and editing, and final feedback delivery to students.
+This prototype demonstrates a simplified version of the Teaching Assistant (TA) user journey for an AI-assisted grading platform. The system includes **15 pre-existing student submissions** with calculus homework problems, allowing TAs to immediately start the grading workflow without needing to upload files. The platform simulates AI-powered grading with rubric-based scoring, TA review and editing, and final feedback delivery to students.
 
 ## Features
 
@@ -19,30 +19,35 @@ This prototype demonstrates a simplified version of the Teaching Assistant (TA) 
 
 1. **Login / Dashboard**
    - Simple login interface with "Login as TA" option
-   - Dashboard showing recent grading activity and quick stats
-   - Upload new submission functionality
+   - Dashboard showing pre-existing student submissions
+   - Three submission categories: Pending Grading, Graded, Released
+   - Quick stats showing total submissions and grading progress
 
-2. **Upload Student Submission**
-   - Drag-and-drop file upload interface
-   - Support for PDF, TXT, DOC, DOCX files
-   - Real-time upload progress indication
+2. **Manage Pre-existing Submissions**
+   - **15 mock student submissions** with calculus homework problems
+   - **12 pending submissions** ready for AI grading
+   - **2 graded submissions** ready for review and release
+   - **1 released submission** already sent to student
+   - Realistic student answers with varying quality levels
 
-3. **AI Grading Simulation**
-   - Mock AI grading with rubric-based scoring
-   - Different rubrics for math homework vs. essays
-   - Realistic score generation with feedback comments
+3. **AI Grading Workflow**
+   - Click "Grade with AI" on any pending submission
+   - Automated grading with rubric-based scoring
+   - Calculus problems: derivatives, limits, integrals, critical points
+   - Realistic score generation with detailed feedback
 
-4. **TA Review Screen**
+4. **TA Review & Edit**
    - Interactive table showing AI-generated grades
+   - **Student answers displayed** for each question
    - Editable scores and feedback for each question
    - Visual indicators for edited items
    - Real-time total score calculation
 
-5. **Student View**
-   - Final graded report with letter grades
-   - Detailed feedback for each question
-   - Overall comments and next steps
-   - Professional student-facing interface
+5. **Release Grades to Students**
+   - Review and approve final grades
+   - Click "Release to Student" to send feedback
+   - Track submission status: pending → graded → released
+   - Professional student-facing interface with detailed feedback
 
 ## Technical Stack
 
@@ -131,23 +136,44 @@ ai-grading-platform/
    python app.py
    ```
 
-5. The backend will be available at `http://localhost:5000`
+5. The backend will be available at `http://localhost:5001`
 
 ## Usage
 
 1. **Start the application** by opening the frontend in your browser
 2. **Login as TA** by clicking the "Login as TA" button
-3. **Upload a submission** by clicking "Upload Submission" and selecting a file
-4. **Review AI grades** in the review interface, making any necessary adjustments
-5. **Send feedback** to see the final student view
+3. **View pre-existing submissions** in three categories:
+   - **Pending Grading**: 12 submissions ready for AI grading
+   - **Graded**: 2 submissions ready for review and release
+   - **Released**: 1 submission already sent to student
+4. **Grade submissions** by clicking "Grade with AI" on any pending submission
+5. **Review and edit grades** in the review interface, making any necessary adjustments
+6. **Release grades** by clicking "Release to Student" when ready
+7. **View student feedback** to see the final graded report
 
 ## Mock Data
 
-The system uses realistic mock data to simulate:
-- Different assignment types (math homework, essays)
-- Rubric-based scoring with varying point values
-- Realistic feedback comments
-- Grade distributions and percentages
+The system includes **15 pre-existing student submissions** with realistic mock data:
+
+### **Student Submissions**
+- **Alice Johnson, Bob Smith, Carol Davis** - Confident answers with good understanding
+- **Emma Rodriguez, Frank Chen, Grace Kim** - Detailed work with step-by-step solutions
+- **Henry Patel** - Struggling student showing honest uncertainty
+- **Isabella Martinez, Jack Thompson, Katie Lee** - Advanced techniques and clear explanations
+- **Liam O'Connor, Maya Singh, Noah Brown, Olivia Taylor** - Various performance levels
+
+### **Calculus Problems**
+All submissions contain the same 5 calculus problems:
+1. **Derivatives**: f(x) = 3x² + 2x - 1 (10 points)
+2. **Limits**: lim(x→2) (x²-4)/(x-2) (15 points)  
+3. **Integration**: Area under y = x² from 0 to 3 (20 points)
+4. **Critical Points**: f(x) = x³ - 3x + 1 (15 points)
+5. **Second Derivatives**: g(x) = sin(x) + cos(x) (10 points)
+
+### **Submission States**
+- **12 Pending**: Ready for AI grading
+- **2 Graded**: Ready for review and release
+- **1 Released**: Already sent to student
 
 ## Deployment
 
