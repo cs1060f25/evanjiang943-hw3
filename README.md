@@ -198,4 +198,4 @@ This project is created for educational purposes as part of a CS1060 assignment.
 
 ## Contact
 
-For questions or issues, please contact Evan Jiang at [your-email@example.com].
+For questions or issues, please contact Evan Jiang at evanjiang@college.harvard.edu
