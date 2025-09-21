@@ -93,10 +93,26 @@ const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission }) => {
       
       if (response.ok) {
         const data = await response.json();
-        onGradeSubmission(data.grading_result);
+        
+        // Update local state to move submission from pending to graded
+        setSubmissions(prev => prev.map(sub => 
+          sub.id === submission.id 
+            ? { 
+                ...sub, 
+                status: 'graded' as const,
+                total_score: data.total_score,
+                max_total: data.max_total,
+                percentage: data.percentage,
+                graded_at: new Date().toISOString()
+              } 
+            : sub
+        ));
+        
+        // Pass the grading result to parent component
+        onGradeSubmission(data);
       } else {
         // Fallback to mock grading
-        onGradeSubmission({
+        const mockResult = {
           submission_id: submission.id,
           student_name: submission.student_name,
           filename: submission.filename,
@@ -111,7 +127,23 @@ const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission }) => {
           total_score: 61,
           max_total: 70,
           percentage: 87.1
-        });
+        };
+        
+        // Update local state for mock grading too
+        setSubmissions(prev => prev.map(sub => 
+          sub.id === submission.id 
+            ? { 
+                ...sub, 
+                status: 'graded' as const,
+                total_score: mockResult.total_score,
+                max_total: mockResult.max_total,
+                percentage: mockResult.percentage,
+                graded_at: new Date().toISOString()
+              } 
+            : sub
+        ));
+        
+        onGradeSubmission(mockResult);
       }
     } catch (error) {
       console.error('Error grading submission:', error);
