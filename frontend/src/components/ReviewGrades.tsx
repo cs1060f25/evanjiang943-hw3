@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import type { GradingResult, EditedGrades } from '../App';
 
 interface ReviewGradesProps {
@@ -22,6 +22,13 @@ const ReviewGrades: React.FC<ReviewGradesProps> = ({
   const [currentGrades, setCurrentGrades] = useState<EditedGrades>(
     editedGrades || { ...gradingResult, questions: gradingResult.questions.map(q => ({ ...q, edited: false })) }
   );
+
+  // Sync currentGrades with editedGrades when it changes
+  useEffect(() => {
+    if (editedGrades) {
+      setCurrentGrades(editedGrades);
+    }
+  }, [editedGrades]);
 
   const handleScoreChange = (questionId: string, newScore: number) => {
     const updatedGrades = {

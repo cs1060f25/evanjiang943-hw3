@@ -62,8 +62,7 @@ function App() {
 
   const handleBackToDashboard = () => {
     setCurrentState('dashboard');
-    setGradingResult(null);
-    setEditedGrades(null);
+    // Don't clear the data so it persists when navigating back
   };
 
   const handleNewSubmission = () => {
