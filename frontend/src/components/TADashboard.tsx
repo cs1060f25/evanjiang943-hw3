@@ -256,7 +256,27 @@ const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission }) => {
                   <div className="submission-actions">
                     <button 
                       className="action-btn secondary small"
-                      onClick={() => onGradeSubmission(submission as any)}
+                      onClick={() => {
+                        // Create a grading result from the submission data for review
+                        const gradingResult = {
+                          submission_id: submission.id,
+                          student_name: submission.student_name,
+                          filename: submission.filename,
+                          assignment_type: submission.assignment_type,
+                          questions: submission.questions?.map((q: any) => ({
+                            question_id: q.id,
+                            description: q.description,
+                            score: q.score || 0,
+                            max_points: q.max_points,
+                            feedback: q.feedback || "No feedback available",
+                            student_answer: q.student_answer
+                          })) || [],
+                          total_score: submission.total_score || 0,
+                          max_total: submission.max_total || 0,
+                          percentage: submission.percentage || 0
+                        };
+                        onGradeSubmission(gradingResult);
+                      }}
                     >
                       Review
                     </button>
