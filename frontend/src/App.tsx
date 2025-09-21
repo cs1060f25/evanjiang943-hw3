@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import './App.css';
 import LoginPage from './components/LoginPage';
 import TADashboard from './components/TADashboard';
@@ -41,6 +41,7 @@ function App() {
   const [currentState, setCurrentState] = useState<AppState>('login');
   const [gradingResult, setGradingResult] = useState<GradingResult | null>(null);
   const [editedGrades, setEditedGrades] = useState<EditedGrades | null>(null);
+  const dashboardUpdateRef = useRef<((submissionId: string, updatedGrades: any) => void) | null>(null);
 
   const handleLogin = () => {
     setCurrentState('dashboard');
@@ -65,10 +66,17 @@ function App() {
     console.log('Grades updated for submission:', submissionId, updatedGrades);
   };
 
+  const handleRegisterUpdateFunction = (updateFn: (submissionId: string, updatedGrades: any) => void) => {
+    dashboardUpdateRef.current = updateFn;
+  };
+
   const handleGradesSaved = (submissionId: string, grades: any) => {
     // This will be called when grades are saved from the review page
     console.log('Grades saved for submission:', submissionId, grades);
-    // Store the updated grades in a ref or state that can be accessed by the dashboard
+    // Update the dashboard with the new grades
+    if (dashboardUpdateRef.current) {
+      dashboardUpdateRef.current(submissionId, grades);
+    }
     setEditedGrades(grades);
   };
 
@@ -86,7 +94,7 @@ function App() {
   return (
     <div className="App">
       {currentState === 'login' && <LoginPage onLogin={handleLogin} />}
-      {currentState === 'dashboard' && <TADashboard onGradeSubmission={handleGradeSubmission} onGradesUpdated={handleGradesUpdated} />}
+      {currentState === 'dashboard' && <TADashboard onGradeSubmission={handleGradeSubmission} onGradesUpdated={handleGradesUpdated} onRegisterUpdateFunction={handleRegisterUpdateFunction} />}
       {currentState === 'review' && gradingResult && (
         <ReviewGrades 
           gradingResult={gradingResult}

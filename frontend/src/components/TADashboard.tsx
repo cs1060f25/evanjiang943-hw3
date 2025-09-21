@@ -26,15 +26,23 @@ interface Submission {
 interface TADashboardProps {
   onGradeSubmission: (gradingResult: any) => void;
   onGradesUpdated?: (submissionId: string, updatedGrades: any) => void;
+  onRegisterUpdateFunction?: (updateFn: (submissionId: string, updatedGrades: any) => void) => void;
 }
 
-const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission, onGradesUpdated }) => {
+const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission, onGradesUpdated, onRegisterUpdateFunction }) => {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchSubmissions();
   }, []);
+
+  // Register the update function with the parent component
+  useEffect(() => {
+    if (onRegisterUpdateFunction) {
+      onRegisterUpdateFunction(updateSubmissionGrades);
+    }
+  }, [onRegisterUpdateFunction]);
 
   const fetchSubmissions = async () => {
     try {
