@@ -6,8 +6,8 @@ A rapid prototype of an AI-assisted grading platform designed to help instructor
 
 - **Student Name:** Evan Jiang
 - **GitHub Username:** evanjiang943
-- **Deployed App URL:** [https://ai-grading-platform.vercel.app](https://ai-grading-platform.vercel.app)
-- **Team PRD:** [Google Drive Link](https://drive.google.com/drive/folders/your-prd-link-here)
+- **Deployed App URL:** [https://ai-grading-platform.vercel.app](https://evanjiang943-hw3.vercel.app/)
+- **Team PRD:** [Google Drive Link](https://docs.google.com/document/d/1sgZGKUVJfO5fihTeJeYjj75gSGqirkfN0aCQc5t77tI/edit?tab=t.0)
 
 ## Overview
 
