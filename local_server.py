@@ -76,8 +76,19 @@ class LocalAPIHandler(BaseHTTPRequestHandler):
                     result['filename'] = submission['filename']
                     result['assignment_type'] = submission['assignment_type']
                     
-                    # Update submission status
+                    # Update submission status and store grading results
                     submission['status'] = 'graded'
+                    submission['total_score'] = result['total_score']
+                    submission['max_total'] = result['max_total']
+                    submission['percentage'] = result['percentage']
+                    submission['graded_at'] = result.get('graded_at', '2024-01-16T14:20:00Z')
+                    
+                    # Update questions with scores and feedback
+                    for i, question in enumerate(submission['questions']):
+                        if i < len(result['questions']):
+                            graded_q = result['questions'][i]
+                            question['score'] = graded_q['score']
+                            question['feedback'] = graded_q['feedback']
                     
                     self.send_response(200)
                     self.send_header('Content-Type', 'application/json')
