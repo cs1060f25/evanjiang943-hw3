@@ -42,8 +42,8 @@ const ReviewGrades: React.FC<ReviewGradesProps> = ({
     
     // Recalculate total
     const newTotal = updatedGrades.questions.reduce((sum, q) => sum + q.score, 0);
-    updatedGrades.total_score = newTotal;
-    updatedGrades.percentage = Math.round((newTotal / updatedGrades.max_total) * 100 * 10) / 10;
+    updatedGrades.total_score = Math.round(newTotal * 10) / 10;
+    updatedGrades.percentage = Math.round((updatedGrades.total_score / updatedGrades.max_total) * 100 * 10) / 10;
     
     setCurrentGrades(updatedGrades);
     onGradesUpdated(updatedGrades);
@@ -114,12 +114,12 @@ const ReviewGrades: React.FC<ReviewGradesProps> = ({
               <div className="summary-item">
                 <span className="summary-label">Total Score</span>
                 <span className="summary-value">
-                  {currentGrades.total_score} / {currentGrades.max_total}
+                  {currentGrades.total_score.toFixed(1)} / {currentGrades.max_total}
                 </span>
               </div>
               <div className="summary-item">
                 <span className="summary-label">Percentage</span>
-                <span className="summary-value">{currentGrades.percentage}%</span>
+                <span className="summary-value">{currentGrades.percentage.toFixed(1)}%</span>
               </div>
               <div className="summary-item">
                 <span className="summary-label">Grade</span>
@@ -160,8 +160,9 @@ const ReviewGrades: React.FC<ReviewGradesProps> = ({
                           type="number"
                           min="0"
                           max={question.max_points}
+                          step="0.1"
                           value={question.score}
-                          onChange={(e) => handleScoreChange(question.question_id, parseInt(e.target.value) || 0)}
+                          onChange={(e) => handleScoreChange(question.question_id, parseFloat(e.target.value) || 0)}
                           className="score-input"
                         />
                         {question.edited && <span className="edited-indicator">*</span>}

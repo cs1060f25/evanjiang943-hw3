@@ -241,7 +241,7 @@ const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission }) => {
                     <div className="student-name">{submission.student_name}</div>
                     <div className="filename">{submission.filename}</div>
                     <div className="score-info">
-                      Score: {submission.total_score}/{submission.max_total} ({submission.percentage}%)
+                      Score: {submission.total_score?.toFixed(1) || 0}/{submission.max_total} ({submission.percentage?.toFixed(1) || 0}%)
                     </div>
                   </div>
                   <div className="submission-actions">
@@ -296,7 +296,7 @@ const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission }) => {
                     <div className="student-name">{submission.student_name}</div>
                     <div className="filename">{submission.filename}</div>
                     <div className="score-info">
-                      Score: {submission.total_score}/{submission.max_total} ({submission.percentage}%)
+                      Score: {submission.total_score?.toFixed(1) || 0}/{submission.max_total} ({submission.percentage?.toFixed(1) || 0}%)
                     </div>
                   </div>
                   <div className="submission-actions">
