@@ -48,7 +48,7 @@ const UploadSubmission: React.FC<UploadSubmissionProps> = ({ onGradingComplete, 
     
     try {
       // Simulate API call to backend
-      const response = await fetch('http://localhost:5001/api/grade', {
+      const response = await fetch('/api/grade', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

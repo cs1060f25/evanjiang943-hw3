@@ -1,0 +1,16 @@
+{
+  "name": "ai-grading-platform",
+  "version": "1.0.0",
+  "description": "AI-Assisted Grading Platform - Rapid Prototype",
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "preview": "cd frontend && npm run preview",
+    "deploy": "./deploy.sh",
+    "install:frontend": "cd frontend && npm install",
+    "install:all": "npm run install:frontend"
+  },
+  "keywords": ["ai", "grading", "education", "react", "flask"],
+  "author": "Evan Jiang",
+  "license": "MIT"
+}
