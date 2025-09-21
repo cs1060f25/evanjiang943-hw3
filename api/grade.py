@@ -64,6 +64,97 @@ STUDENT_SUBMISSIONS = [
             {"id": "q4", "description": "Determine if the function f(x) = x³ - 3x + 1 has any critical points", "max_points": 15, "student_answer": "x = 1 and x = -1"},
             {"id": "q5", "description": "Find the second derivative of g(x) = sin(x) + cos(x)", "max_points": 10, "student_answer": "-sin(x) - cos(x)"}
         ]
+    },
+    {
+        "id": "sub_003",
+        "student_name": "Carol Davis",
+        "student_id": "CD2024",
+        "filename": "calculus_hw1_carol.pdf",
+        "assignment_type": "calculus_homework",
+        "submitted_at": "2024-01-16T09:15:00Z",
+        "status": "pending_grading",
+        "questions": [
+            {"id": "q1", "description": "Find the derivative of f(x) = 3x² + 2x - 1", "max_points": 10, "student_answer": "I think it's 6x + 2, using the power rule"},
+            {"id": "q2", "description": "Calculate the limit as x approaches 2 of (x² - 4)/(x - 2)", "max_points": 15, "student_answer": "I factored (x²-4) as (x-2)(x+2), so the limit is x+2 = 4"},
+            {"id": "q3", "description": "Find the area under the curve y = x² from x = 0 to x = 3", "max_points": 20, "student_answer": "Using integration: ∫₀³ x² dx = [x³/3]₀³ = 27/3 = 9"},
+            {"id": "q4", "description": "Determine if the function f(x) = x³ - 3x + 1 has any critical points", "max_points": 15, "student_answer": "f'(x) = 3x² - 3. Setting equal to 0: 3x² = 3, so x² = 1, therefore x = ±1"},
+            {"id": "q5", "description": "Find the second derivative of g(x) = sin(x) + cos(x)", "max_points": 10, "student_answer": "g'(x) = cos(x) - sin(x), g''(x) = -sin(x) - cos(x)"}
+        ]
+    },
+    {
+        "id": "sub_004",
+        "student_name": "David Wilson",
+        "student_id": "DW2024",
+        "filename": "math_hw2_david.pdf",
+        "assignment_type": "math_homework",
+        "submitted_at": "2024-01-16T11:30:00Z",
+        "status": "pending_grading",
+        "questions": [
+            {"id": "q1", "description": "Solve the quadratic equation x² - 5x + 6 = 0", "max_points": 20, "student_answer": "Using factoring: (x-2)(x-3) = 0, so x = 2 or x = 3"},
+            {"id": "q2", "description": "Find the slope of the line passing through points (2,3) and (5,9)", "max_points": 15, "student_answer": "Slope = (9-3)/(5-2) = 6/3 = 2"},
+            {"id": "q3", "description": "Graph the function f(x) = 2x + 1 and identify its domain and range", "max_points": 25, "student_answer": "It's a linear function with slope 2 and y-intercept 1. Domain: all real numbers, Range: all real numbers"}
+        ]
+    },
+    {
+        "id": "sub_005",
+        "student_name": "Emma Rodriguez",
+        "student_id": "ER2024",
+        "filename": "essay_analysis_emma.pdf",
+        "assignment_type": "essay",
+        "submitted_at": "2024-01-16T14:20:00Z",
+        "status": "pending_grading",
+        "questions": [
+            {"id": "q1", "description": "Thesis statement and argument structure", "max_points": 30, "student_answer": "My thesis argues that climate change requires immediate action. I structure my argument by first presenting evidence, then addressing counterarguments, and finally proposing solutions."},
+            {"id": "q2", "description": "Evidence and examples used", "max_points": 25, "student_answer": "I used data from NASA showing rising global temperatures, examples of extreme weather events, and studies from climate scientists. I also referenced the Paris Agreement as evidence of international recognition."},
+            {"id": "q3", "description": "Writing quality and grammar", "max_points": 20, "student_answer": "I focused on clear, concise sentences and varied my sentence structure. I proofread for grammar and spelling errors and used transition words to connect ideas."},
+            {"id": "q4", "description": "Conclusion and overall coherence", "max_points": 25, "student_answer": "My conclusion summarizes the key points and calls for action. I believe the essay flows logically from problem identification to evidence presentation to solution proposals."}
+        ]
+    },
+    {
+        "id": "sub_006",
+        "student_name": "Frank Chen",
+        "student_id": "FC2024",
+        "filename": "calculus_hw1_frank.pdf",
+        "assignment_type": "calculus_homework",
+        "submitted_at": "2024-01-16T16:45:00Z",
+        "status": "pending_grading",
+        "questions": [
+            {"id": "q1", "description": "Find the derivative of f(x) = 3x² + 2x - 1", "max_points": 10, "student_answer": "f'(x) = 6x + 2"},
+            {"id": "q2", "description": "Calculate the limit as x approaches 2 of (x² - 4)/(x - 2)", "max_points": 15, "student_answer": "I'm not sure about this one. Maybe 4?"},
+            {"id": "q3", "description": "Find the area under the curve y = x² from x = 0 to x = 3", "max_points": 20, "student_answer": "I think it's 9 but I'm not confident in my work"},
+            {"id": "q4", "description": "Determine if the function f(x) = x³ - 3x + 1 has any critical points", "max_points": 15, "student_answer": "I found f'(x) = 3x² - 3, but I'm not sure how to solve 3x² - 3 = 0"},
+            {"id": "q5", "description": "Find the second derivative of g(x) = sin(x) + cos(x)", "max_points": 10, "student_answer": "g'(x) = cos(x) - sin(x), g''(x) = -sin(x) - cos(x)"}
+        ]
+    },
+    {
+        "id": "sub_007",
+        "student_name": "Grace Kim",
+        "student_id": "GK2024",
+        "filename": "math_hw2_grace.pdf",
+        "assignment_type": "math_homework",
+        "submitted_at": "2024-01-17T10:15:00Z",
+        "status": "pending_grading",
+        "questions": [
+            {"id": "q1", "description": "Solve the quadratic equation x² - 5x + 6 = 0", "max_points": 20, "student_answer": "I used the quadratic formula: x = (5 ± √(25-24))/2 = (5 ± 1)/2, so x = 3 or x = 2"},
+            {"id": "q2", "description": "Find the slope of the line passing through points (2,3) and (5,9)", "max_points": 15, "student_answer": "m = (y₂-y₁)/(x₂-x₁) = (9-3)/(5-2) = 6/3 = 2"},
+            {"id": "q3", "description": "Graph the function f(x) = 2x + 1 and identify its domain and range", "max_points": 25, "student_answer": "This is a linear function. I plotted points (0,1) and (1,3) and drew a line. Domain: (-∞, ∞), Range: (-∞, ∞)"}
+        ]
+    },
+    {
+        "id": "sub_008",
+        "student_name": "Henry Brown",
+        "student_id": "HB2024",
+        "filename": "calculus_hw1_henry.pdf",
+        "assignment_type": "calculus_homework",
+        "submitted_at": "2024-01-17T13:30:00Z",
+        "status": "pending_grading",
+        "questions": [
+            {"id": "q1", "description": "Find the derivative of f(x) = 3x² + 2x - 1", "max_points": 10, "student_answer": "Using power rule: f'(x) = 2(3x) + 1(2) = 6x + 2"},
+            {"id": "q2", "description": "Calculate the limit as x approaches 2 of (x² - 4)/(x - 2)", "max_points": 15, "student_answer": "Factor numerator: (x-2)(x+2)/(x-2) = x+2. As x→2, this approaches 2+2 = 4"},
+            {"id": "q3", "description": "Find the area under the curve y = x² from x = 0 to x = 3", "max_points": 20, "student_answer": "∫₀³ x² dx = [x³/3]₀³ = 3³/3 - 0³/3 = 27/3 = 9"},
+            {"id": "q4", "description": "Determine if the function f(x) = x³ - 3x + 1 has any critical points", "max_points": 15, "student_answer": "f'(x) = 3x² - 3. Critical points where f'(x) = 0: 3x² - 3 = 0, so x² = 1, giving x = ±1"},
+            {"id": "q5", "description": "Find the second derivative of g(x) = sin(x) + cos(x)", "max_points": 10, "student_answer": "g'(x) = cos(x) - sin(x), g''(x) = -sin(x) - cos(x)"}
+        ]
     }
 ]
 
