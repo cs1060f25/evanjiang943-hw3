@@ -25,11 +25,10 @@ interface Submission {
 
 interface TADashboardProps {
   onGradeSubmission: (gradingResult: any) => void;
-  onGradesUpdated?: (submissionId: string, updatedGrades: any) => void;
   onRegisterUpdateFunction?: (updateFn: (submissionId: string, updatedGrades: any) => void) => void;
 }
 
-const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission, onGradesUpdated, onRegisterUpdateFunction }) => {
+const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission, onRegisterUpdateFunction }) => {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [loading, setLoading] = useState(true);
 

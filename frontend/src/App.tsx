@@ -61,10 +61,6 @@ function App() {
     setCurrentState('student');
   };
 
-  const handleGradesUpdated = (submissionId: string, updatedGrades: any) => {
-    // This will be called when grades are updated in the dashboard
-    console.log('Grades updated for submission:', submissionId, updatedGrades);
-  };
 
   const handleRegisterUpdateFunction = (updateFn: (submissionId: string, updatedGrades: any) => void) => {
     dashboardUpdateRef.current = updateFn;
@@ -94,12 +90,11 @@ function App() {
   return (
     <div className="App">
       {currentState === 'login' && <LoginPage onLogin={handleLogin} />}
-      {currentState === 'dashboard' && <TADashboard onGradeSubmission={handleGradeSubmission} onGradesUpdated={handleGradesUpdated} onRegisterUpdateFunction={handleRegisterUpdateFunction} />}
+      {currentState === 'dashboard' && <TADashboard onGradeSubmission={handleGradeSubmission} onRegisterUpdateFunction={handleRegisterUpdateFunction} />}
       {currentState === 'review' && gradingResult && (
         <ReviewGrades 
           gradingResult={gradingResult}
           editedGrades={editedGrades}
-          onGradesUpdated={setEditedGrades}
           onReviewComplete={handleReviewComplete}
           onBack={handleBackToDashboard}
           onGradesSaved={handleGradesSaved}
