@@ -13,10 +13,18 @@ interface Submission {
   percentage?: number;
   graded_at?: string;
   released_at?: string;
+  questions?: Array<{
+    id: string;
+    description: string;
+    max_points: number;
+    student_answer: string;
+    score?: number;
+    feedback?: string;
+  }>;
 }
 
 interface TADashboardProps {
-  onGradeSubmission: (submission: Submission) => void;
+  onGradeSubmission: (gradingResult: any) => void;
 }
 
 const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission }) => {
@@ -167,23 +175,6 @@ const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission }) => {
     }
   };
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'pending_grading': return 'status-pending';
-      case 'graded': return 'status-graded';
-      case 'released': return 'status-released';
-      default: return 'status-pending';
-    }
-  };
-
-  const getStatusText = (status: string) => {
-    switch (status) {
-      case 'pending_grading': return 'Pending Grading';
-      case 'graded': return 'Graded';
-      case 'released': return 'Released';
-      default: return 'Unknown';
-    }
-  };
 
   const pendingSubmissions = submissions.filter(s => s.status === 'pending_grading');
   const gradedSubmissions = submissions.filter(s => s.status === 'graded');
@@ -263,7 +254,7 @@ const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission }) => {
                           student_name: submission.student_name,
                           filename: submission.filename,
                           assignment_type: submission.assignment_type,
-                          questions: submission.questions?.map((q: any) => ({
+                          questions: submission.questions?.map((q) => ({
                             question_id: q.id,
                             description: q.description,
                             score: q.score || 0,
