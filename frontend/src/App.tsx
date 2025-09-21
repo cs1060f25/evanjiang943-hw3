@@ -2,7 +2,6 @@ import { useState } from 'react';
 import './App.css';
 import LoginPage from './components/LoginPage';
 import TADashboard from './components/TADashboard';
-import UploadSubmission from './components/UploadSubmission';
 import ReviewGrades from './components/ReviewGrades';
 import StudentView from './components/StudentView';
 
@@ -36,7 +35,7 @@ export interface EditedGrades extends GradingResult {
   }>;
 }
 
-type AppState = 'login' | 'dashboard' | 'upload' | 'review' | 'student';
+type AppState = 'login' | 'dashboard' | 'review' | 'student';
 
 function App() {
   const [currentState, setCurrentState] = useState<AppState>('login');
@@ -47,9 +46,6 @@ function App() {
     setCurrentState('dashboard');
   };
 
-  const handleUpload = () => {
-    setCurrentState('upload');
-  };
 
   const handleGradeSubmission = (submission: any) => {
     // Convert submission to grading result format
@@ -69,11 +65,6 @@ function App() {
     setCurrentState('review');
   };
 
-  const handleGradingComplete = (result: GradingResult) => {
-    setGradingResult(result);
-    setEditedGrades({ ...result, questions: result.questions.map(q => ({ ...q, edited: false })) });
-    setCurrentState('review');
-  };
 
   const handleReviewComplete = (finalGrades: EditedGrades) => {
     setEditedGrades(finalGrades);
@@ -89,19 +80,13 @@ function App() {
   const handleNewSubmission = () => {
     setGradingResult(null);
     setEditedGrades(null);
-    setCurrentState('upload');
+    setCurrentState('dashboard');
   };
 
   return (
     <div className="App">
       {currentState === 'login' && <LoginPage onLogin={handleLogin} />}
-      {currentState === 'dashboard' && <TADashboard onUpload={handleUpload} onGradeSubmission={handleGradeSubmission} />}
-      {currentState === 'upload' && (
-        <UploadSubmission 
-          onGradingComplete={handleGradingComplete}
-          onBack={handleBackToDashboard}
-        />
-      )}
+      {currentState === 'dashboard' && <TADashboard onGradeSubmission={handleGradeSubmission} />}
       {currentState === 'review' && gradingResult && (
         <ReviewGrades 
           gradingResult={gradingResult}

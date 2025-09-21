@@ -170,34 +170,7 @@ class handler(BaseHTTPRequestHandler):
         path_parts = parsed_path.path.strip('/').split('/')
         
         if path_parts[0] == 'api':
-            if len(path_parts) == 2 and path_parts[1] == 'grade':
-                # POST /api/grade (upload new submission)
-                content_length = int(self.headers['Content-Length'])
-                post_data = self.rfile.read(content_length)
-                
-                try:
-                    data = json.loads(post_data.decode('utf-8'))
-                    assignment_type = data.get('assignment_type', 'calculus_homework')
-                    questions = data.get('questions', [])
-                    
-                    result = simulate_ai_grading(assignment_type, questions)
-                    result['filename'] = data.get('filename', 'submission.pdf')
-                    result['assignment_type'] = assignment_type
-                    
-                    self.send_response(200)
-                    self.send_header('Content-Type', 'application/json')
-                    self.send_header('Access-Control-Allow-Origin', '*')
-                    self.end_headers()
-                    self.wfile.write(json.dumps(result).encode())
-                    return
-                except Exception as e:
-                    self.send_response(400)
-                    self.send_header('Content-Type', 'application/json')
-                    self.send_header('Access-Control-Allow-Origin', '*')
-                    self.end_headers()
-                    self.wfile.write(json.dumps({"error": str(e)}).encode())
-                    return
-            elif len(path_parts) == 4 and path_parts[1] == 'submissions' and path_parts[3] == 'grade':
+            if len(path_parts) == 4 and path_parts[1] == 'submissions' and path_parts[3] == 'grade':
                 # POST /api/submissions/{id}/grade
                 submission_id = path_parts[2]
                 submission = next((s for s in STUDENT_SUBMISSIONS if s['id'] == submission_id), None)

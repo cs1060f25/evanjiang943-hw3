@@ -16,11 +16,10 @@ interface Submission {
 }
 
 interface TADashboardProps {
-  onUpload: () => void;
   onGradeSubmission: (submission: Submission) => void;
 }
 
-const TADashboard: React.FC<TADashboardProps> = ({ onUpload, onGradeSubmission }) => {
+const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission }) => {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -178,14 +177,6 @@ const TADashboard: React.FC<TADashboardProps> = ({ onUpload, onGradeSubmission }
       </div>
       
       <div className="dashboard-content">
-        <div className="dashboard-card">
-          <h2>Grade New Submission</h2>
-          <p>Upload a student's homework file to begin AI-assisted grading</p>
-          <button className="action-btn primary" onClick={onUpload}>
-            Upload Submission
-          </button>
-        </div>
-        
         <div className="dashboard-card">
           <h2>Pending Grading ({pendingSubmissions.length})</h2>
           <div className="submissions-list">

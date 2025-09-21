@@ -58,8 +58,7 @@ This prototype demonstrates a simplified version of the Teaching Assistant (TA) 
 - **Fetch API** for backend communication
 
 ### Backend
-- **Flask** (Python) web framework
-- **Flask-CORS** for cross-origin requests
+- **Vercel Serverless Functions** (Python)
 - **Mock data generation** for AI grading simulation
 - **RESTful API** design
 
@@ -72,7 +71,6 @@ ai-grading-platform/
 │   │   ├── components/      # React components
 │   │   │   ├── LoginPage.tsx
 │   │   │   ├── TADashboard.tsx
-│   │   │   ├── UploadSubmission.tsx
 │   │   │   ├── ReviewGrades.tsx
 │   │   │   └── StudentView.tsx
 │   │   ├── App.tsx          # Main application component
@@ -80,10 +78,9 @@ ai-grading-platform/
 │   │   └── main.tsx         # Application entry point
 │   ├── package.json
 │   └── vite.config.ts
-├── backend/                  # Flask backend
-│   ├── app.py               # Main Flask application
-│   ├── requirements.txt     # Python dependencies
-│   └── venv/               # Virtual environment
+├── api/                     # Vercel serverless functions
+│   └── grade.py             # Main API handler
+├── vercel.json              # Vercel configuration
 └── README.md
 ```
 

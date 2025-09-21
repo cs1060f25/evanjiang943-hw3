@@ -7,10 +7,10 @@
     "build": "cd frontend && npm run build",
     "preview": "cd frontend && npm run preview",
     "deploy": "./deploy.sh",
-    "install:frontend": "cd frontend && npm install",
-    "install:all": "npm run install:frontend"
+    "install": "cd frontend && npm install",
+    "start": "npm run dev"
   },
-  "keywords": ["ai", "grading", "education", "react", "flask"],
+  "keywords": ["ai", "grading", "education", "react", "vercel"],
   "author": "Evan Jiang",
   "license": "MIT"
 }
