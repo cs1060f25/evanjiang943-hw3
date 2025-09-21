@@ -25,9 +25,10 @@ interface Submission {
 
 interface TADashboardProps {
   onGradeSubmission: (gradingResult: any) => void;
+  onGradesUpdated?: (submissionId: string, updatedGrades: any) => void;
 }
 
-const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission }) => {
+const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission, onGradesUpdated }) => {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -93,6 +94,23 @@ const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission }) => {
     }
   };
 
+  const updateSubmissionGrades = (submissionId: string, updatedGrades: any) => {
+    setSubmissions(prev => prev.map(sub => 
+      sub.id === submissionId 
+        ? { 
+            ...sub, 
+            total_score: updatedGrades.total_score,
+            max_total: updatedGrades.max_total,
+            percentage: updatedGrades.percentage,
+            questions: sub.questions?.map(q => {
+              const updatedQ = updatedGrades.questions.find((uq: any) => uq.question_id === q.id);
+              return updatedQ ? { ...q, score: updatedQ.score, feedback: updatedQ.feedback } : q;
+            }) || []
+          } 
+        : sub
+    ));
+  };
+
   const handleGradeSubmission = async (submission: Submission) => {
     try {
       const response = await fetch(`http://localhost:5001/api/submissions/${submission.id}/grade`, {
@@ -111,7 +129,11 @@ const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission }) => {
                 total_score: data.total_score,
                 max_total: data.max_total,
                 percentage: data.percentage,
-                graded_at: new Date().toISOString()
+                graded_at: new Date().toISOString(),
+                questions: sub.questions?.map(q => {
+                  const gradedQ = data.questions.find((gq: any) => gq.question_id === q.id);
+                  return gradedQ ? { ...q, score: gradedQ.score, feedback: gradedQ.feedback } : q;
+                }) || []
               } 
             : sub
         ));
@@ -146,7 +168,11 @@ const TADashboard: React.FC<TADashboardProps> = ({ onGradeSubmission }) => {
                 total_score: mockResult.total_score,
                 max_total: mockResult.max_total,
                 percentage: mockResult.percentage,
-                graded_at: new Date().toISOString()
+                graded_at: new Date().toISOString(),
+                questions: sub.questions?.map(q => {
+                  const mockQ = mockResult.questions.find((mq: any) => mq.question_id === q.id);
+                  return mockQ ? { ...q, score: mockQ.score, feedback: mockQ.feedback } : q;
+                }) || []
               } 
             : sub
         ));

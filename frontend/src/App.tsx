@@ -60,6 +60,18 @@ function App() {
     setCurrentState('student');
   };
 
+  const handleGradesUpdated = (submissionId: string, updatedGrades: any) => {
+    // This will be called when grades are updated in the dashboard
+    console.log('Grades updated for submission:', submissionId, updatedGrades);
+  };
+
+  const handleGradesSaved = (submissionId: string, grades: any) => {
+    // This will be called when grades are saved from the review page
+    console.log('Grades saved for submission:', submissionId, grades);
+    // Store the updated grades in a ref or state that can be accessed by the dashboard
+    setEditedGrades(grades);
+  };
+
   const handleBackToDashboard = () => {
     setCurrentState('dashboard');
     // Don't clear the data so it persists when navigating back
@@ -74,7 +86,7 @@ function App() {
   return (
     <div className="App">
       {currentState === 'login' && <LoginPage onLogin={handleLogin} />}
-      {currentState === 'dashboard' && <TADashboard onGradeSubmission={handleGradeSubmission} />}
+      {currentState === 'dashboard' && <TADashboard onGradeSubmission={handleGradeSubmission} onGradesUpdated={handleGradesUpdated} />}
       {currentState === 'review' && gradingResult && (
         <ReviewGrades 
           gradingResult={gradingResult}
@@ -82,6 +94,7 @@ function App() {
           onGradesUpdated={setEditedGrades}
           onReviewComplete={handleReviewComplete}
           onBack={handleBackToDashboard}
+          onGradesSaved={handleGradesSaved}
         />
       )}
       {currentState === 'student' && editedGrades && (

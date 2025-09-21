@@ -7,6 +7,7 @@ interface ReviewGradesProps {
   onGradesUpdated: (grades: EditedGrades) => void;
   onReviewComplete: (finalGrades: EditedGrades) => void;
   onBack: () => void;
+  onGradesSaved?: (submissionId: string, grades: EditedGrades) => void;
 }
 
 const ReviewGrades: React.FC<ReviewGradesProps> = ({ 
@@ -14,7 +15,8 @@ const ReviewGrades: React.FC<ReviewGradesProps> = ({
   editedGrades, 
   onGradesUpdated, 
   onReviewComplete, 
-  onBack 
+  onBack,
+  onGradesSaved
 }) => {
   console.log('ReviewGrades received gradingResult:', gradingResult);
   console.log('ReviewGrades received editedGrades:', editedGrades);
@@ -64,6 +66,10 @@ const ReviewGrades: React.FC<ReviewGradesProps> = ({
   };
 
   const handleSubmit = () => {
+    // Save the grades to the submission data
+    if (onGradesSaved && gradingResult.submission_id) {
+      onGradesSaved(gradingResult.submission_id, currentGrades);
+    }
     onReviewComplete(currentGrades);
   };
 
